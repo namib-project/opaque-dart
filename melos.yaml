@@ -1,0 +1,5 @@
+name: opaque-dart
+
+packages:
+  - packages/opaque
+  - packages/opaque_libs
