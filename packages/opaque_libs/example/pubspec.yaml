@@ -29,7 +29,7 @@ dependencies:
   opaque:
     path: ../../opaque
 
-  sodium_libs: ^1.2.3
+  # sodium_libs: ^1.2.3
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

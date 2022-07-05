@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'dart:async';
 
@@ -41,6 +43,7 @@ class _MyAppState extends State<MyApp> {
 
     try {
       final opaque = Opaque.init();
+      opaque.CreateCredentialRequest(Uint8List.fromList([1,2,3,4,5]));
     } catch (e) {
       errorMessage = e.toString();
     }

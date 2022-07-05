@@ -70,13 +70,10 @@ do
    export ARCHITECTURE="${ANDROID_ARCHITECTURES[$i]}"
    export TARGET="${ANDROID_TRIPLES[$i]}${ANDROID_API[$i]}"
    export CC=$TOOLCHAIN/bin/$TARGET-clang
-   export CFLAGS="-Wall -O2 -g -fstack-protector-strong -D_FORTIFY_SOURCE=2 -fasynchronous-unwind-tables -fpic -fstack-clash-protection -Werror=format-security -Werror=implicit-function-declaration -ftrapv"
-   export LDFLAGS="-g -lsodium"
-   make common.o opaque.o
-   # Might seem a bit weird, but we'll need to make the final call to clang without using the makefile.
-   # Also, while shellcheck might complain here, we actually can't use quotes around the arguments.
-   "$CC" $CFLAGS -shared -L. -Landroid/$ARCHITECTURE -Wl,-soname,libopaque.so -o libopaque.so $LDFLAGS
-   # -Landroid/$ARCHITECTURE"
+   # We need the headers from somewhere, might as well use the pre-existing win directory.
+   export CFLAGS="-g -Iaux_ -Iwin/libsodium-win64/include"
+   export LDFLAGS="-g -lsodium -Landroid/$ARCHITECTURE"
+   make libopaque.so "CC=$CC" "CFLAGS=$CFLAGS" "LDFLAGS=$LDFLAGS"
    mkdir -p "${ANDROID_DIRECTORY}/$ARCHITECTURE"
    mv libopaque.so "${ANDROID_DIRECTORY}/$ARCHITECTURE"/libopaque.so
 done
