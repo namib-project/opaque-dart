@@ -30,13 +30,13 @@ mv libopaque.so "$LINUX_DIRECTORY"/libopaque.so
 # Compile Windows binary (using MinGW)
 export SODIUM_VERSION="1.0.18"
 if [[ ! -d win ]]; then
-  curl https://download.libsodium.org/libsodium/releases/libsodium-${SODIUM_VERSION}-mingw.tar.gz -o sodium_android.tar.gz
+  curl https://download.libsodium.org/libsodium/releases/libsodium-${SODIUM_VERSION}-mingw.tar.gz -o sodium.tar.gz
   mkdir -p win
   tar xvf sodium.tar.gz -C win/
 fi
-make clean
-make mingw64
-mv libopaque.dll "$WINDOWS_DIRECTORY"/libopaque.dll
+#make clean
+#make mingw64
+#mv libopaque.dll "$WINDOWS_DIRECTORY"/libopaque.dll
 
 # Compile Android binaries
 ANDROID_DIRECTORY=$OLDPWD/android/src/main/jniLibs
